@@ -3,8 +3,6 @@ package com.kalyan.demo.entity;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.Mapping;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,9 +11,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 
 
@@ -39,9 +38,21 @@ public class Post{
 	private Date lastEdited;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
-	@JoinColumn(name="user_id_comment")
+	@JoinColumn(name="user_id")
 	private User user;
 	
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="post", cascade = CascadeType.ALL)
 	private List<Comment> comments;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(name="upvoted_posts",
+				joinColumns=@JoinColumn(name="post_id"),
+				inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> usersUpvoted;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(name="downvoted_posts",
+				joinColumns=@JoinColumn(name="post_id"),
+				inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> usersDownvoted;
 }

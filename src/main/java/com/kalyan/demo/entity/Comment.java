@@ -1,6 +1,7 @@
 package com.kalyan.demo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -33,11 +36,23 @@ public class Comment{
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
-	@JoinColumn(name="user_id_comment")
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
 	@JoinColumn(name="post_id")
 	private Post post;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(name="upvoted_comments",
+				joinColumns=@JoinColumn(name="comment_id"),
+				inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> usersUpvoted;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(name="downvoted_comments",
+				joinColumns=@JoinColumn(name="comment_id"),
+				inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> usersDownvoted;
 	
 }
