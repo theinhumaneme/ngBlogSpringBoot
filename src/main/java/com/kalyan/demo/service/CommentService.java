@@ -1,5 +1,5 @@
 package com.kalyan.demo.service;
 
-public interface userService {
+public interface CommentService {
 
 }

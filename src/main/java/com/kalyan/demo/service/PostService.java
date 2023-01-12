@@ -1,5 +1,5 @@
 package com.kalyan.demo.service;
 
-public interface postService {
+public interface PostService {
 
 }

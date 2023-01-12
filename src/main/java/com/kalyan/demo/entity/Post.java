@@ -37,20 +37,20 @@ public class Post{
 	@Column(name="date_edited")
 	private Date lastEdited;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@OneToMany(mappedBy="post", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinTable(name="upvoted_posts",
 				joinColumns=@JoinColumn(name="post_id"),
 				inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> usersUpvoted;
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinTable(name="downvoted_posts",
 				joinColumns=@JoinColumn(name="post_id"),
 				inverseJoinColumns=@JoinColumn(name="user_id"))
