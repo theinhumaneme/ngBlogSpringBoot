@@ -31,6 +31,70 @@ public class Comment{
 	@Column(name = "date_created")
 	private Date dateCreated;
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateEdited() {
+		return dateEdited;
+	}
+
+	public void setDateEdited(Date dateEdited) {
+		this.dateEdited = dateEdited;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public List<User> getUsersUpvoted() {
+		return usersUpvoted;
+	}
+
+	public void setUsersUpvoted(List<User> usersUpvoted) {
+		this.usersUpvoted = usersUpvoted;
+	}
+
+	public List<User> getUsersDownvoted() {
+		return usersDownvoted;
+	}
+
+	public void setUsersDownvoted(List<User> usersDownvoted) {
+		this.usersDownvoted = usersDownvoted;
+	}
+
 	@Column(name = "date_edited")
 	private Date dateEdited;
 	

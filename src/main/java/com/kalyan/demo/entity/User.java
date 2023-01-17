@@ -30,6 +30,86 @@ public class User{
 	@Column(name="username")
 	private String username;
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Comment> getUpvotedComments() {
+		return upvotedComments;
+	}
+
+	public void setUpvotedComments(List<Comment> upvotedComments) {
+		this.upvotedComments = upvotedComments;
+	}
+
+	public List<Post> getUpvotedPosts() {
+		return upvotedPosts;
+	}
+
+	public void setUpvotedPosts(List<Post> upvotedPosts) {
+		this.upvotedPosts = upvotedPosts;
+	}
+
+	public List<Comment> getDownvotedComments() {
+		return downvotedComments;
+	}
+
+	public void setDownvotedComments(List<Comment> downvotedComments) {
+		this.downvotedComments = downvotedComments;
+	}
+
+	public List<Post> getDownvotedPosts() {
+		return downvotedPosts;
+	}
+
+	public void setDownvotedPosts(List<Post> downvotedPosts) {
+		this.downvotedPosts = downvotedPosts;
+	}
+
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="user", cascade = CascadeType.ALL)
 	private List<Post> posts;
 	
