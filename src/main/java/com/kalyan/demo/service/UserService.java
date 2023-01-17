@@ -2,8 +2,11 @@ package com.kalyan.demo.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.kalyan.demo.dao.UserRepository;
 import com.kalyan.demo.entity.User;
+@Service
 
 public interface UserService {
 	

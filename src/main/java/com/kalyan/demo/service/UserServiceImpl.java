@@ -11,6 +11,7 @@ import com.kalyan.demo.entity.User;
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
@@ -20,12 +21,14 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<User> getUsers() {
+		System.out.println("san");
+//		System.out.println(this.userRepository.findAll());
 		return this.userRepository.findAll();
 	}
 	@Override
 	public User getUser(int id) {
 		if (this.userRepository.existsById(id) == true) {
-			return this.userRepository.getById(id);
+			return this.userRepository.findById(id).get();
 		}
 		else {
 			throw new RuntimeException("User with id, doesn't exist");
@@ -47,13 +50,16 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("User doesn't exist");
 		}
 	}
-
-	
-
 	@Override
 	public User deleteUser(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.userRepository.existsById(id)==true) {
+			User user = this.userRepository.findById(id).get();
+			this.userRepository.deleteById(id);
+			return user;
+		}
+		else {
+			throw new RuntimeException("User doesn't exist");
+		}
 	}
 
 }
