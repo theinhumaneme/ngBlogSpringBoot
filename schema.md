@@ -11,8 +11,8 @@
 - commentsDownvoted ```List<Integer>```
 
 # post
-- dateCreated ```Date```
-- dateEdited ```Date```
+- date_created ```Date```
+- date_edited ```Date```
 - title ```Text```
 - content ```Text```
 - upVotes ```Integer```
@@ -23,8 +23,8 @@
 - downVotedBy ```List<Integer>```
 
 # comment
-- dateCreated ```Date```
-- dateEdited ```Date```
+- date_created ```Date```
+- date_edited ```Date```
 - content ```Text```
 - upVotes ```Integer```
 - downVotes ```Integer```

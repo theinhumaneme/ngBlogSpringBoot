@@ -24,7 +24,6 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public List<Post> getPosts() {
-		// TODO Auto-generated method stub
 		return this.postRepository.findAll();
 	}
 
@@ -42,7 +41,7 @@ public class PostServiceImpl implements PostService {
 	public Post addPost(Post post, int userId) {
 		User user = this.userService.getUser(userId);
 		post.setUser(user);
-		post.setDateCreated(Date.valueOf(LocalDate.now()));
+		post.setDate_created(Date.valueOf(LocalDate.now()));
 		this.postRepository.save(post);
 		return post;
 	}
@@ -52,7 +51,7 @@ public class PostServiceImpl implements PostService {
 			Post orgPost = this.postRepository.findById(post.getId()).get();
 			orgPost.setTitle(post.getTitle());
 			orgPost.setContent(post.getContent());
-			orgPost.setLastEdited(Date.valueOf(LocalDate.now()));
+			orgPost.setDate_edited(Date.valueOf(LocalDate.now()));
 			this.postRepository.save(orgPost);
 			return orgPost;
 		}

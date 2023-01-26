@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kalyan.demo.dao.CommentRepository;
@@ -19,7 +18,6 @@ public class CommentServiceImpl implements CommentService {
 	private PostService postService;
 	private UserService userService;
 	
-	@Autowired
 	public CommentServiceImpl(CommentRepository commentRepository, UserService userService, PostService postService) {
 		this.commentRepository = commentRepository;
 		this.userService = userService;
@@ -28,7 +26,6 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public List<Comment> getComments() {
-		// TODO Auto-generated method stub
 		return this.commentRepository.findAll();
 	}
 
@@ -48,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
 		User user = this.userService.getUser(userId);
 		comment.setUser(user);
 		comment.setPost(post);
-		comment.setDateCreated(Date.valueOf(LocalDate.now()));
+		comment.setdate_created(Date.valueOf(LocalDate.now()));
 		this.commentRepository.save(comment);
 		return comment;
 	}

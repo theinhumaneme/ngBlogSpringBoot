@@ -1,7 +1,5 @@
 package com.kalyan.demo.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +36,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{userId}")
-	public User getUserById(@PathVariable(value = "userid") int userId) {
+	public User getUserById(@PathVariable(value = "userId") int userId) {
 		System.out.println("in user");
 		return this.userServiceImpl.getUser(userId);
 	}

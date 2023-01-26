@@ -1,18 +1,15 @@
 package com.kalyan.demo.entity;
 
 import java.sql.Date;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -29,7 +26,7 @@ public class Comment{
 	private String content;
 	
 	@Column(name = "date_created")
-	private Date dateCreated;
+	private Date date_created;
 	
 	public Integer getId() {
 		return id;
@@ -47,20 +44,20 @@ public class Comment{
 		this.content = content;
 	}
 
-	public Date getDateCreated() {
-		return dateCreated;
+	public Date getdate_created() {
+		return date_created;
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	public void setdate_created(Date date_created) {
+		this.date_created = date_created;
 	}
 
-	public Date getDateEdited() {
-		return dateEdited;
+	public Date getdate_edited() {
+		return date_edited;
 	}
 
-	public void setDateEdited(Date dateEdited) {
-		this.dateEdited = dateEdited;
+	public void setdate_edited(Date date_edited) {
+		this.date_edited = date_edited;
 	}
 
 	public User getUser() {
@@ -79,44 +76,45 @@ public class Comment{
 		this.post = post;
 	}
 
-	public List<User> getUsersUpvoted() {
-		return usersUpvoted;
-	}
+	// public List<User> getUsersUpvoted() {
+	// 	return usersUpvoted;
+	// }
 
-	public void setUsersUpvoted(List<User> usersUpvoted) {
-		this.usersUpvoted = usersUpvoted;
-	}
+	// public void setUsersUpvoted(List<User> usersUpvoted) {
+	// 	this.usersUpvoted = usersUpvoted;
+	// }
 
-	public List<User> getUsersDownvoted() {
-		return usersDownvoted;
-	}
+	// public List<User> getUsersDownvoted() {
+	// 	return usersDownvoted;
+	// }
 
-	public void setUsersDownvoted(List<User> usersDownvoted) {
-		this.usersDownvoted = usersDownvoted;
-	}
+	// public void setUsersDownvoted(List<User> usersDownvoted) {
+	// 	this.usersDownvoted = usersDownvoted;
+	// }
 
 	@Column(name = "date_edited")
-	private Date dateEdited;
+	private Date date_edited;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
+	@JsonBackReference
+	@ManyToOne()
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.REMOVE})
+    // @JsonBackReference
+	@ManyToOne()
 	@JoinColumn(name="post_id")
 	private Post post;
 	
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name="upvoted_comments",
-				joinColumns=@JoinColumn(name="comment_id"),
-				inverseJoinColumns=@JoinColumn(name="user_id"))
-	private List<User> usersUpvoted;
+	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	// @JoinTable(name="upvoted_comments",
+	// 			joinColumns=@JoinColumn(name="comment_id"),
+	// 			inverseJoinColumns=@JoinColumn(name="user_id"))
+	// private List<User> usersUpvoted;
 	
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name="downvoted_comments",
-				joinColumns=@JoinColumn(name="comment_id"),
-				inverseJoinColumns=@JoinColumn(name="user_id"))
-	private List<User> usersDownvoted;
+	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	// @JoinTable(name="downvoted_comments",
+	// 			joinColumns=@JoinColumn(name="comment_id"),
+	// 			inverseJoinColumns=@JoinColumn(name="user_id"))
+	// private List<User> usersDownvoted;
 	
 }
