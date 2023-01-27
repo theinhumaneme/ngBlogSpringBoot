@@ -98,13 +98,13 @@ public class Post {
 		this.user = user;
 	}
 
-	// public List<Comment> getComments() {
-	// return comments;
-	// }
+	public List<Comment> getComments() {
+	return comments;
+	}
 
-	// public void setComments(List<Comment> comments) {
-	// this.comments = comments;
-	// }
+	public void setComments(List<Comment> comments) {
+	this.comments = comments;
+	}
 
 	// public List<User> getUsersUpvoted() {
 	// return usersUpvoted;
@@ -127,7 +127,7 @@ public class Post {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	// @JsonManagedReference
+	@JsonManagedReference
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 

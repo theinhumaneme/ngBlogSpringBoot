@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -109,11 +110,11 @@ public class User{
 	// 	this.downvotedPosts = downvotedPosts;
 	// }
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
 	private List<Post> posts;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
 	private List<Comment> comments;
 	
 	// @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)

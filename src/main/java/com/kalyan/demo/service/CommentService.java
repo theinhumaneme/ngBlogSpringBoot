@@ -2,8 +2,11 @@ package com.kalyan.demo.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.kalyan.demo.entity.Comment;
 
+@Repository
 public interface CommentService {
 	
 	public List<Comment> getComments();

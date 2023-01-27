@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kalyan.demo.entity.Comment;
 import com.kalyan.demo.service.CommentServiceImpl;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CommentController {
     private CommentServiceImpl commentServiceImpl;
 
@@ -25,30 +24,33 @@ public class CommentController {
         this.commentServiceImpl = commentServiceImpl;
 
     }
-    @GetMapping("/comment")
+
+    @GetMapping(value = "/comment", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Comment> getComments() {
         return this.commentServiceImpl.getComments();
 
     }
 
-    @GetMapping("/comment/{commentId}")
+    @GetMapping(value = "/comment/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Comment getCommentById(@PathVariable int commentId) {
         Comment comment = this.commentServiceImpl.getComment(commentId);
         return comment;
     }
 
     @PostMapping(value = "/comment/{postId}/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Comment addComment(@RequestBody Comment comment, @PathVariable(name = "postId") int postId, @PathVariable(name = "userId") int userId) {
-        if (comment.getId() != null) comment.setId(null);
+    public Comment addComment(@RequestBody Comment comment, @PathVariable(name = "postId") int postId,
+            @PathVariable(name = "userId") int userId) {
+        if (comment.getId() != null)
+            comment.setId(null);
         return this.commentServiceImpl.addComment(comment, postId, userId);
     }
 
-    @PutMapping("/comment")
+    @PutMapping(value = "/comment", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Comment updateComment(@RequestBody Comment comment) {
         return this.commentServiceImpl.updateComment(comment);
     }
 
-    @DeleteMapping("/comment/{commentId}")
+    @DeleteMapping(value = "/comment/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Comment deleteComment(@PathVariable int commentId) {
         Comment comment = this.commentServiceImpl.deleteComment(commentId);
         return comment;

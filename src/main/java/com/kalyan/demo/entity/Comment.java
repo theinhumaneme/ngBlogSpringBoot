@@ -100,7 +100,7 @@ public class Comment{
 	@JoinColumn(name="user_id")
 	private User user;
 	
-    // @JsonBackReference
+    @JsonBackReference
 	@ManyToOne()
 	@JoinColumn(name="post_id")
 	private Post post;
