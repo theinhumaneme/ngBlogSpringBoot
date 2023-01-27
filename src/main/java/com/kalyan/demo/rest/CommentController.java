@@ -16,7 +16,7 @@ import com.kalyan.demo.entity.Comment;
 import com.kalyan.demo.service.CommentServiceImpl;
 
 @RestController
-@RequestMapping(value = "/api",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api")
 public class CommentController {
     private CommentServiceImpl commentServiceImpl;
 
@@ -25,13 +25,13 @@ public class CommentController {
 
     }
 
-    @GetMapping(value = "/comment", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/comments")
     public List<Comment> getComments() {
         return this.commentServiceImpl.getComments();
 
     }
 
-    @GetMapping(value = "/comment/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/comment/{commentId}")
     public Comment getCommentById(@PathVariable int commentId) {
         Comment comment = this.commentServiceImpl.getComment(commentId);
         return comment;
@@ -45,12 +45,12 @@ public class CommentController {
         return this.commentServiceImpl.addComment(comment, postId, userId);
     }
 
-    @PutMapping(value = "/comment", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/comment/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Comment updateComment(@RequestBody Comment comment) {
         return this.commentServiceImpl.updateComment(comment);
     }
 
-    @DeleteMapping(value = "/comment/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/comment/delete/{commentId}")
     public Comment deleteComment(@PathVariable int commentId) {
         Comment comment = this.commentServiceImpl.deleteComment(commentId);
         return comment;

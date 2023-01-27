@@ -16,7 +16,7 @@ import com.kalyan.demo.service.UserService;
 import com.kalyan.demo.service.UserServiceImpl;
 
 @RestController
-@RequestMapping(value = "/api",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api")
 public class UserController {
 	@Autowired
 	private UserService userServiceImpl;
@@ -26,32 +26,30 @@ public class UserController {
 
 	}
 
-	@GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/users")
 	public Object getUsers() {
-		System.out.println("san");
 		return this.userServiceImpl.getUsers();
-
 	}
 
 	@GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User getUserById(@PathVariable(value = "userId") int userId) {
-		System.out.println("in user");
+		;
 		return this.userServiceImpl.getUser(userId);
 	}
 
-	@PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/user/create")
 	public User addUser(@RequestBody User user) {
 		if (user.getId() != null)
 			user.setId(null);
 		return this.userServiceImpl.addUser(user);
 	}
 
-	@PutMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User updateUser(@RequestBody User user) {
 		return this.userServiceImpl.updateUser(user);
 	}
 
-	@DeleteMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/user/delete/{userId}")
 	public User deleteUser(@PathVariable int userId) {
 		User user = this.userServiceImpl.deleteUser(userId);
 		return user;

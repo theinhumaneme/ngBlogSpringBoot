@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -74,22 +75,6 @@ public class Post {
 		this.content = content;
 	}
 
-	// public Date getdate_created() {
-	// return date_created;
-	// }
-
-	// public void setdate_created(Date date_created) {
-	// this.date_created = date_created;
-	// }
-
-	// public Date getLastEdited() {
-	// return lastEdited;
-	// }
-
-	// public void setLastEdited(Date lastEdited) {
-	// this.lastEdited = lastEdited;
-	// }
-
 	public User getUser() {
 		return user;
 	}
@@ -99,11 +84,11 @@ public class Post {
 	}
 
 	public List<Comment> getComments() {
-	return comments;
+		return comments;
 	}
 
 	public void setComments(List<Comment> comments) {
-	this.comments = comments;
+		this.comments = comments;
 	}
 
 	// public List<User> getUsersUpvoted() {
@@ -122,13 +107,19 @@ public class Post {
 	// this.usersDownvoted = usersDownvoted;
 	// }
 
-	@JsonBackReference
+	@JsonBackReference(value = "user-posts")
 	@ManyToOne()
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy="post")
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", title=" + title + ", content=" + content + ", date_created=" + date_created
+				+ ", date_edited=" + date_edited + ", user=" + user + ", comments=" + comments + "]";
+	}
+
+	@JsonManagedReference(value = "post-comments")
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
 	private List<Comment> comments;
 
 	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)

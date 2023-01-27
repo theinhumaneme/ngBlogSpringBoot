@@ -17,7 +17,7 @@ import com.kalyan.demo.entity.Post;
 import com.kalyan.demo.service.PostServiceImpl;
 
 @RestController
-@RequestMapping(value = "/api",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api")
 public class PostController {
 	private PostServiceImpl postServiceImpl;
 
@@ -26,19 +26,19 @@ public class PostController {
 
 	}
 
-	@GetMapping(value = "/post", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/posts")
 	public List<Post> getPosts() {
 		return this.postServiceImpl.getPosts();
 
 	}
 
-	@GetMapping(value = "/post/{postId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/post/{postId}")
 	public Post getPostById(@PathVariable int postId) {
 		Post post = this.postServiceImpl.getPost(postId);
 		return post;
 	}
 
-	@PostMapping(value = "/post", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/post/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Post addPost(@RequestBody Post post, @RequestParam(name = "userId") int userId) {
 		if (post.getId() != null)
 			post.setId(null);
@@ -46,12 +46,12 @@ public class PostController {
 
 	}
 
-	@PutMapping(value = "/post", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/post/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Post updatePost(@RequestBody Post post) {
 		return this.postServiceImpl.updatePost(post);
 	}
 
-	@DeleteMapping(value = "/post/{postId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/post/delete/{postId}")
 	public Post deletePost(@PathVariable int postId) {
 		Post post = this.postServiceImpl.deletePost(postId);
 		return post;

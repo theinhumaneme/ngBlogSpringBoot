@@ -15,19 +15,19 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "comment")
-public class Comment{
-	
+public class Comment {
+
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "content")
 	private String content;
-	
+
 	@Column(name = "date_created")
 	private Date date_created;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -77,44 +77,50 @@ public class Comment{
 	}
 
 	// public List<User> getUsersUpvoted() {
-	// 	return usersUpvoted;
+	// return usersUpvoted;
 	// }
 
 	// public void setUsersUpvoted(List<User> usersUpvoted) {
-	// 	this.usersUpvoted = usersUpvoted;
+	// this.usersUpvoted = usersUpvoted;
 	// }
 
 	// public List<User> getUsersDownvoted() {
-	// 	return usersDownvoted;
+	// return usersDownvoted;
 	// }
 
 	// public void setUsersDownvoted(List<User> usersDownvoted) {
-	// 	this.usersDownvoted = usersDownvoted;
+	// this.usersDownvoted = usersDownvoted;
 	// }
 
 	@Column(name = "date_edited")
 	private Date date_edited;
-	
-	@JsonBackReference
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", content=" + content + ", date_created=" + date_created + ", date_edited="
+				+ date_edited + ", user=" + user + ", post=" + post + "]";
+	}
+
+	@JsonBackReference(value = "user-comments")
 	@ManyToOne()
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-    @JsonBackReference
+
+	@JsonBackReference(value = "post-comments")
 	@ManyToOne()
-	@JoinColumn(name="post_id")
+	@JoinColumn(name = "post_id")
 	private Post post;
-	
+
 	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	// @JoinTable(name="upvoted_comments",
-	// 			joinColumns=@JoinColumn(name="comment_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="user_id"))
+	// joinColumns=@JoinColumn(name="comment_id"),
+	// inverseJoinColumns=@JoinColumn(name="user_id"))
 	// private List<User> usersUpvoted;
-	
+
 	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	// @JoinTable(name="downvoted_comments",
-	// 			joinColumns=@JoinColumn(name="comment_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="user_id"))
+	// joinColumns=@JoinColumn(name="comment_id"),
+	// inverseJoinColumns=@JoinColumn(name="user_id"))
 	// private List<User> usersDownvoted;
-	
+
 }

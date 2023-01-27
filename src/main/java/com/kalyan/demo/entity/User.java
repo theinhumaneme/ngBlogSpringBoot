@@ -14,22 +14,22 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="user")
-public class User{
-	
+@Table(name = "user")
+public class User {
+
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String first_name;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String last_name;
-	
-	@Column(name="username")
+
+	@Column(name = "username")
 	private String username;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -79,69 +79,72 @@ public class User{
 	}
 
 	// public List<Comment> getUpvotedComments() {
-	// 	return upvotedComments;
+	// return upvotedComments;
 	// }
 
 	// public void setUpvotedComments(List<Comment> upvotedComments) {
-	// 	this.upvotedComments = upvotedComments;
+	// this.upvotedComments = upvotedComments;
 	// }
 
 	// public List<Post> getUpvotedPosts() {
-	// 	return upvotedPosts;
+	// return upvotedPosts;
 	// }
 
 	// public void setUpvotedPosts(List<Post> upvotedPosts) {
-	// 	this.upvotedPosts = upvotedPosts;
+	// this.upvotedPosts = upvotedPosts;
 	// }
 
 	// public List<Comment> getDownvotedComments() {
-	// 	return downvotedComments;
+	// return downvotedComments;
 	// }
 
 	// public void setDownvotedComments(List<Comment> downvotedComments) {
-	// 	this.downvotedComments = downvotedComments;
+	// this.downvotedComments = downvotedComments;
 	// }
 
 	// public List<Post> getDownvotedPosts() {
-	// 	return downvotedPosts;
+	// return downvotedPosts;
 	// }
 
 	// public void setDownvotedPosts(List<Post> downvotedPosts) {
-	// 	this.downvotedPosts = downvotedPosts;
+	// this.downvotedPosts = downvotedPosts;
 	// }
-	@JsonManagedReference
-	@OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
+	@JsonManagedReference(value = "user-posts")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Post> posts;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
+	@JsonManagedReference(value = "user-comments")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.ALL })
 	private List<Comment> comments;
-	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", username=" + username
+				+ ", posts=" + posts + ", comments=" + comments + "]";
+	}
+
 	// @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	// @JoinTable(name="upvoted_comments",
-	// 			joinColumns=@JoinColumn(name="user_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="comment_id"))
+	// joinColumns=@JoinColumn(name="user_id"),
+	// inverseJoinColumns=@JoinColumn(name="comment_id"))
 	// private List<Comment> upvotedComments;
-	
+
 	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	// @JoinTable(name="upvoted_posts",
-	// 			joinColumns=@JoinColumn(name="user_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="post_id"))
+	// joinColumns=@JoinColumn(name="user_id"),
+	// inverseJoinColumns=@JoinColumn(name="post_id"))
 	// private List<Post> upvotedPosts;
-	
-	
+
 	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	// @JoinTable(name="downvoted_comments",
-	// 			joinColumns=@JoinColumn(name="user_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="comment_id"))
+	// joinColumns=@JoinColumn(name="user_id"),
+	// inverseJoinColumns=@JoinColumn(name="comment_id"))
 	// private List<Comment> downvotedComments;
-	
+
 	// @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	// @JoinTable(name="downvoted_posts",
-	// 			joinColumns=@JoinColumn(name="user_id"),
-	// 			inverseJoinColumns=@JoinColumn(name="post_id"))
+	// joinColumns=@JoinColumn(name="user_id"),
+	// inverseJoinColumns=@JoinColumn(name="post_id"))
 	// private List<Post> downvotedPosts;
-	
-	
-	
+
 }

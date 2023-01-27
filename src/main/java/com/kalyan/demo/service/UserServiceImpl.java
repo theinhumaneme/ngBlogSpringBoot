@@ -13,23 +13,21 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-	
+
 	@Override
 	public List<User> getUsers() {
-		System.out.println("san");
-//		System.out.println(this.userRepository.findAll());
 		return this.userRepository.findAll();
 	}
+
 	@Override
 	public User getUser(int id) {
 		if (this.userRepository.existsById(id) == true) {
 			return this.userRepository.findById(id).get();
-		}
-		else {
+		} else {
 			throw new RuntimeException("User with id, doesn't exist");
 		}
 	}
@@ -39,24 +37,24 @@ public class UserServiceImpl implements UserService {
 		this.userRepository.save(user);
 		return user;
 	}
+
 	@Override
 	public User updateUser(User user) {
-		if (this.userRepository.existsById(user.getId())== true){
+		if (this.userRepository.existsById(user.getId()) == true) {
 			this.userRepository.save(user);
 			return user;
-		}
-		else {
+		} else {
 			throw new RuntimeException("User doesn't exist");
 		}
 	}
+
 	@Override
 	public User deleteUser(int id) {
-		if(this.userRepository.existsById(id)==true) {
+		if (this.userRepository.existsById(id) == true) {
 			User user = this.userRepository.findById(id).get();
 			this.userRepository.deleteById(id);
 			return user;
-		}
-		else {
+		} else {
 			throw new RuntimeException("User doesn't exist");
 		}
 	}
