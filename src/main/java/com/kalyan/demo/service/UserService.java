@@ -20,4 +20,5 @@ public interface UserService {
 
 	public User deleteUser(int id);
 
+	public User upvotePost(int id, int postId);
 }

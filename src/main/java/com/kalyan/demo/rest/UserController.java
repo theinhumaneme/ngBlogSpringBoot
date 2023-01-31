@@ -55,4 +55,10 @@ public class UserController {
 		return user;
 	}
 
+	@PostMapping(value = "/user/upvote/post/{userId}/{postId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User upvotePost(@PathVariable int userId,@PathVariable int postId){
+		this.userServiceImpl.upvotePost(userId, postId);
+		return this.getUserById(userId);
+	}
+
 }
