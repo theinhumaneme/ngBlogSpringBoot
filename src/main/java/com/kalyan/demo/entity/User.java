@@ -85,13 +85,13 @@ public class User {
 		this.comments = comments;
 	}
 
-	// public List<Comment> getUpvotedComments() {
-	// return upvotedComments;
-	// }
+	public List<Comment> getUpvotedComments() {
+	return upvotedComments;
+	}
 
-	// public void setUpvotedComments(List<Comment> upvotedComments) {
-	// this.upvotedComments = upvotedComments;
-	// }
+	public void setUpvotedComments(List<Comment> upvotedComments) {
+	this.upvotedComments = upvotedComments;
+	}
 
 	public List<Post> getUpvotedPosts() {
 	return upvotedPosts;
@@ -130,11 +130,12 @@ public class User {
 				+ ", posts=" + posts + ", comments=" + comments + "]";
 	}
 
-	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	// @JoinTable(name="upvoted_comments",
-	// joinColumns=@JoinColumn(name="user_id"),
-	// inverseJoinColumns=@JoinColumn(name="comment_id"))
-	// private List<Comment> upvotedComments;
+	@ManyToMany()
+	@JoinTable(name="upvoted_comments",
+	joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns=@JoinColumn(name="comment_id"))
+	private List<Comment> upvotedComments;
+	
 	@ManyToMany()
 	@JoinTable(name="upvoted_posts",
 	joinColumns=@JoinColumn(name="user_id"),

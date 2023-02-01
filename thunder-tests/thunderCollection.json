@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "colName": "User",
+    "created": "2023-01-31T19:39:22.185Z",
+    "sortNum": 10000,
+    "folders": []
+  },
+  {
+    "_id": "954503f0-7f5b-485e-92d0-0473bc09b9fc",
+    "colName": "Post",
+    "created": "2023-01-31T20:58:18.016Z",
+    "sortNum": 30000,
+    "folders": []
+  },
+  {
+    "_id": "eeaf109e-ef56-4d10-ac9e-3aa3c552f078",
+    "colName": "Comment",
+    "created": "2023-01-31T21:03:16.897Z",
+    "sortNum": 40000,
+    "folders": []
+  }
+]

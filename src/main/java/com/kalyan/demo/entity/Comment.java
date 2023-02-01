@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,property = "id")
 @Entity
 @Table(name = "comment")
 public class Comment {
@@ -76,13 +77,13 @@ public class Comment {
 		this.post = post;
 	}
 
-	// public List<User> getUsersUpvoted() {
-	// return usersUpvoted;
-	// }
+	public List<User> getUsersUpvoted() {
+	return usersUpvoted;
+	}
 
-	// public void setUsersUpvoted(List<User> usersUpvoted) {
-	// this.usersUpvoted = usersUpvoted;
-	// }
+	public void setUsersUpvoted(List<User> usersUpvoted) {
+	this.usersUpvoted = usersUpvoted;
+	}
 
 	// public List<User> getUsersDownvoted() {
 	// return usersDownvoted;
@@ -111,11 +112,11 @@ public class Comment {
 	@JoinColumn(name = "post_id")
 	private Post post;
 
-	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	// @JoinTable(name="upvoted_comments",
-	// joinColumns=@JoinColumn(name="comment_id"),
-	// inverseJoinColumns=@JoinColumn(name="user_id"))
-	// private List<User> usersUpvoted;
+	@ManyToMany()
+	@JoinTable(name="upvoted_comments",
+	joinColumns=@JoinColumn(name="comment_id"),
+	inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> usersUpvoted;
 
 	// @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	// @JoinTable(name="downvoted_comments",
