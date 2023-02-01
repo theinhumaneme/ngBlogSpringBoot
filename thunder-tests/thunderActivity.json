@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "f1d44e4a-2858-4bf3-b500-f541c84dc761",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8080/api/user",
+    "url": "localhost:8080/api/user",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-31T19:38:39.686Z",
+    "modified": "2023-01-31T19:38:39.686Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\":\"theinhumaneme\",\n  \"first_name\": \"Kalyan\",\n  \"last_name\":\"Mudumby\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "56115f05-d9a9-440a-98b7-3455eb847cfb",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8080/api/user/create",
+    "url": "localhost:8080/api/user/create",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-31T19:38:48.535Z",
+    "modified": "2023-01-31T19:38:48.535Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\":\"theinhumaneme\",\n  \"first_name\": \"Kalyan\",\n  \"last_name\":\"Mudumby\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

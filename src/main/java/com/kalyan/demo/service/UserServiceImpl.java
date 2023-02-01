@@ -14,6 +14,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private VoteService voteService;
+
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
@@ -57,6 +60,38 @@ public class UserServiceImpl implements UserService {
 		} else {
 			throw new RuntimeException("User doesn't exist");
 		}
+	}
+
+	@Override
+	public User upvotePost(int userId, int postId) {
+		if (this.voteService.upvotePost(userId, postId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public User upvoteComment(int userId, int commentId) {
+		if (this.voteService.upvoteComment(userId, commentId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public User downvotePost(int userId, int postId) {
+		if (this.voteService.downvotePost(userId, postId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public User downvoteComment(int userId, int commentId) {
+		if (this.voteService.downvotedComment(userId, commentId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
 	}
 
 }

@@ -55,4 +55,28 @@ public class UserController {
 		return user;
 	}
 
+	@PostMapping(value = "/user/upvote/post/{userId}/{postId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User upvotePost(@PathVariable int userId, @PathVariable int postId) {
+		this.userServiceImpl.upvotePost(userId, postId);
+		return this.getUserById(userId);
+	}
+
+	@PostMapping(value = "/user/upvote/comment/{userId}/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User upvoteComment(@PathVariable int userId, @PathVariable int commentId) {
+		this.userServiceImpl.upvoteComment(userId, commentId);
+		return this.getUserById(userId);
+	}
+
+	@PostMapping(value = "/user/downvote/post/{userId}/{postId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User downvotePost(@PathVariable int userId, @PathVariable int postId) {
+		this.userServiceImpl.downvotePost(userId, postId);
+		return this.getUserById(userId);
+	}
+
+	@PostMapping(value = "/user/downvote/comment/{userId}/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User downvoteComment(@PathVariable int userId, @PathVariable int commentId) {
+		this.userServiceImpl.downvoteComment(userId, commentId);
+		return this.getUserById(userId);
+	}
+
 }

@@ -1,0 +1,163 @@
+[
+  {
+    "_id": "516e91bb-7cdb-4885-81a0-fd58ff4e6486",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "create",
+    "url": "localhost:8080/api/user/create",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-01-31T19:40:03.415Z",
+    "modified": "2023-02-01T19:25:12.500Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\":\"hj\",\n  \"first_name\": \"Kalyan\",\n  \"last_name\":\"Mudumby\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "772838c8-06d8-4017-9dd0-0a78db63c969",
+    "colId": "954503f0-7f5b-485e-92d0-0473bc09b9fc",
+    "containerId": "",
+    "name": "create",
+    "url": "http://localhost:8080/api/post/create?userId=1",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-01-31T20:58:23.036Z",
+    "modified": "2023-01-31T20:59:12.747Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "userId",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"title\": \"hello\",\n  \"content\": \"sekai\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cf348405-5b77-4cd6-a57f-a0746550f32a",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "get all users",
+    "url": "localhost:8080/api/users",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-01-31T20:59:24.676Z",
+    "modified": "2023-01-31T20:59:33.695Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f67fbb8b-fce0-423a-abd8-9af7eb5cf370",
+    "colId": "954503f0-7f5b-485e-92d0-0473bc09b9fc",
+    "containerId": "",
+    "name": "get all posts",
+    "url": "localhost:8080/api/posts",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-01-31T20:59:43.997Z",
+    "modified": "2023-01-31T21:00:07.025Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "04814704-7496-486d-b86d-ab7b0cd79835",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "upvote post",
+    "url": "localhost:8080/api/user/upvote/post/1/2",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-01-31T21:00:38.157Z",
+    "modified": "2023-02-01T19:38:00.638Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c72f86cc-ff16-45d2-adc9-2e63f4b67ea5",
+    "colId": "eeaf109e-ef56-4d10-ac9e-3aa3c552f078",
+    "containerId": "",
+    "name": "create",
+    "url": "http://localhost:8080/api/comment/1/1",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-01-31T21:03:16.901Z",
+    "modified": "2023-01-31T21:04:37.044Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"content\": \"sekai\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "c90cd759-5db4-4f40-abe1-cfc343f3dc1c",
+    "colId": "eeaf109e-ef56-4d10-ac9e-3aa3c552f078",
+    "containerId": "",
+    "name": "get all comments",
+    "url": "localhost:8080/api/comments",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-01-31T21:03:16.902Z",
+    "modified": "2023-02-01T18:38:57.547Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1914bd37-527e-4111-8d70-8bd9bc38e441",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "upvote comment",
+    "url": "localhost:8080/api/user/upvote/comment/1/1",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-02-01T18:38:27.446Z",
+    "modified": "2023-02-01T18:56:49.940Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1d0405bb-55dd-4b40-9d1a-daa91e32b901",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "downvote post",
+    "url": "localhost:8080/api/user/downvote/post/1/2",
+    "method": "POST",
+    "sortNum": 35000,
+    "created": "2023-02-01T19:20:48.768Z",
+    "modified": "2023-02-01T19:37:51.221Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "50196a8d-aad6-460c-9db5-2540e59fb700",
+    "colId": "c3a22c02-2050-4c5e-a726-3b671b692cb6",
+    "containerId": "",
+    "name": "downvote comment",
+    "url": "localhost:8080/api/user/downvote/comment/1/2",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2023-02-01T19:20:53.028Z",
+    "modified": "2023-02-01T19:38:46.625Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
