@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kalyan.demo.dao.PostRepository;
 import com.kalyan.demo.dao.UserRepository;
-import com.kalyan.demo.entity.Post;
 import com.kalyan.demo.entity.User;
 
 @Service
@@ -17,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PostRepository postRepository;
+	private VoteService voteService;
 
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -65,23 +63,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User upvotePost(int id, int postId) {
-		if (this.userRepository.existsById(id) == true) {
-			User user = this.userRepository.findById(id).get();
-			if (user.getUpvotedPosts().contains(postRepository.findById(postId).get()) == true) {
-				// return user;
-				throw new RuntimeException("Post Already Upvoted by user");
-			} else if (this.postRepository.existsById(postId)) {
-				Post post = this.postRepository.findById(postId).get();
-				user.getUpvotedPosts().add(post);
-				user.setUpvotedPosts(user.getUpvotedPosts());
-				this.userRepository.save(user);
-				return user;
-			}
-		} else {
-			throw new RuntimeException("User doesn't exist");
+	public User upvotePost(int userId, int postId) {
+		if (this.voteService.upvotePost(userId, postId) != false) {
+			return this.userRepository.findById(userId).get();
 		}
-		// this.postRepository.ge
+		return null;
+	}
+
+	@Override
+	public User upvoteComment(int userId, int commentId) {
+		if (this.voteService.upvoteComment(userId, commentId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public User downvotePost(int userId, int postId) {
+		if (this.voteService.downvotePost(userId, postId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
+		return null;
+	}
+
+	@Override
+	public User downvoteComment(int userId, int commentId) {
+		if (this.voteService.downvotedComment(userId, commentId) != false) {
+			return this.userRepository.findById(userId).get();
+		}
 		return null;
 	}
 

@@ -23,4 +23,8 @@ public interface UserService {
 	public User upvotePost(int userId, int postId);
 
 	public User upvoteComment(int userId, int commentId);
+
+	public User downvotePost(int userId, int postId);
+
+	public User downvoteComment(int userId, int commentId);
 }

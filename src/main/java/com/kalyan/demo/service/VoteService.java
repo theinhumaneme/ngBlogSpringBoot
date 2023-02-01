@@ -1,18 +1,13 @@
 package com.kalyan.demo.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
-import com.kalyan.demo.entity.Comment;
-import com.kalyan.demo.entity.Post;
-
 public interface VoteService {
 
-	// public List<Post> postsUpvoted(int userId);
+    public boolean upvotePost(int userId, int postId);
 
-    public Post upvotePost(int userId, int postId);
-    // public List<Post> postsDownvoted();
+    public boolean upvoteComment(int userId, int commentId);
 
+    public boolean downvotePost(int userId, int postId);
+
+    public boolean downvotedComment(int userId, int commentId);
 
 }
